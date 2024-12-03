@@ -28,21 +28,21 @@ public class EstacionamientoAutoApiController {
 
     @PostMapping("/crear")
     public EstacionamientoAuto01 crear(@RequestBody Map<String, Object> requestData) {
-        // Extraemos los datos del request (incluyendo ubicacionId)
+
         String idslot = (String) requestData.get("idslot");
         String placa = (String) requestData.get("placa");
         Integer ubicacionId = (Integer) requestData.get("ubicacionId");
 
-        // Creamos la nueva entidad y asignamos los valores
+
         EstacionamientoAuto01 estacionamiento = new EstacionamientoAuto01();
         estacionamiento.setIdslot(idslot);
         estacionamiento.setPlaca(placa);
 
-        // Buscamos la ubicación por el ID y la asignamos a la entidad
+
         Ubicacion ubicacion = ubicacionService.buscar(ubicacionId);
         estacionamiento.setUbicacion(ubicacion);
 
-        // Guardamos la entidad en la base de datos
+
         estacionamientoAuto01Service.grabar(estacionamiento);
 
         return estacionamiento;

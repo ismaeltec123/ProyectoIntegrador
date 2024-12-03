@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="341ab359-ab14-430b-8884-bd5451926d3c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../LoginTest_Proyecto_Integrador/app/src/main/java/com/quispe/ismael/logintest_proyecto_integrador/RetrofitClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginTest_Proyecto_Integrador/app/src/main/java/com/quispe/ismael/logintest_proyecto_integrador/RetrofitClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecsup/prj_pc02/controladores/api/EstacionamientoAutoApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecsup/prj_pc02/controladores/api/EstacionamientoAutoApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +25,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ismaeltec123&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ismaeltec123/ProyectoIntegrador.git&quot;,
+    &quot;accountId&quot;: &quot;de005b53-c1e3-409f-abd2-da7bfcf3d124&quot;
+  }
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -36,6 +49,9 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2nA8S3SHHFznJ4JxukYpojFzZ4j" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -52,7 +68,7 @@
     &quot;Spring Boot.PrjPc02Application.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Tecsup/Daweb/Sem_8/PRJ_PC02&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Tecsup/Construccion_e_innovacion/lab de hoy/petclinic_load_test&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -61,7 +77,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -113,11 +129,26 @@
       <workItem from="1729700861041" duration="126000" />
       <workItem from="1729701292953" duration="466000" />
       <workItem from="1729701830484" duration="2371000" />
-      <workItem from="1729704461526" duration="1338000" />
+      <workItem from="1729704461526" duration="9514000" />
+      <workItem from="1730235881386" duration="498000" />
+      <workItem from="1730399487306" duration="228000" />
+      <workItem from="1730830979979" duration="24000" />
+      <workItem from="1732127321726" duration="776000" />
+      <workItem from="1732128113959" duration="3889000" />
+      <workItem from="1732555494496" duration="2622000" />
+      <workItem from="1732580401448" duration="905000" />
+      <workItem from="1733155144699" duration="23000" />
+      <workItem from="1733225996464" duration="7467000" />
+      <workItem from="1733242120709" duration="12023000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+    </ignored-roots>
   </component>
 </project>
