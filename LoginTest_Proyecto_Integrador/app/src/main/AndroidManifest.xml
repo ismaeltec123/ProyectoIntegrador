@@ -16,13 +16,13 @@
         android:theme="@style/Theme.LoginTest_Proyecto_Integrador"
         tools:targetApi="31">
         <activity
-            android:name=".CreateParkingActivity"
-            android:exported="true" />
+            android:name=".ui.view.HomeActivity"
+            android:exported="false" />
         <activity
-            android:name=".ParkingListActivity"
-            android:exported="true" />
+            android:name=".ui.view.TourActivity"
+            android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.view.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +31,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailsActivity"
+            android:name=".ui.view.CreateParkingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.view.ParkingListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.view.MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.view.DetailsActivity"
             android:exported="true" />
     </application>
 

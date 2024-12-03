@@ -1,18 +1,18 @@
-package com.quispe.ismael.logintest_proyecto_integrador
+package com.quispe.ismael.logintest_proyecto_integrador.ui.view
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.quispe.ismael.logintest_proyecto_integrador.R
 
 class DetailsActivity : AppCompatActivity() {
     private lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -26,6 +26,19 @@ class DetailsActivity : AppCompatActivity() {
         val googleEmail = intent.getStringExtra("google_email")
         val googleProfilePicURL = intent.getStringExtra("google_profile_pic_url")
         val googleAccessToken = intent.getStringExtra("google_id_token")
+
+        // Referencia al ImageView para la foto de perfil
+        val profileImageView = findViewById<ImageView>(R.id.profile_image)
+
+        // Carga la imagen usando Glide
+        if (!googleProfilePicURL.isNullOrEmpty()) {
+            Glide.with(this)
+                .load(googleProfilePicURL) // URL de la imagen
+                .placeholder(R.drawable.ic_profile) // Imagen de carga
+                .error(R.drawable.ic_profile) // Imagen de error
+                .circleCrop() // Recorta la imagen en forma de círculo
+                .into(profileImageView) // Carga la imagen en el ImageView
+        }
 
 
         val googleIdTextView = findViewById<TextView>(R.id.google_id_textview)
@@ -48,7 +61,7 @@ class DetailsActivity : AppCompatActivity() {
             .requestEmail()
             .build()
 
-        // Initialize GoogleSignInClient
+
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
 
@@ -63,15 +76,26 @@ class DetailsActivity : AppCompatActivity() {
             startActivity(intent)  // Start the activity
         }
 
+        val GotoMainButton = findViewById<Button>(R.id.GotoMain)
+        GotoMainButton.setOnClickListener {
+            // Log para verificar el valor de googleProfilePicURL
+            Log.d("DetailsActivity", "URL obtenida de OAuth: $googleProfilePicURL")
+
+            // Asegúrate de pasar la URL correctamente
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.putExtra("google_profile_pic_url", googleProfilePicURL)
+            startActivity(intent)
+        }
+
 
     }
     private fun signOut() {
         mGoogleSignInClient.signOut()
             .addOnCompleteListener(this) {
-                // Show a confirmation message
+
                 Toast.makeText(this, "Te has deslogueado", Toast.LENGTH_SHORT).show()
 
-                // Close the DetailsActivity after signing out
+
                 finish()
             }
     }

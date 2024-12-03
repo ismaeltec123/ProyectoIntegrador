@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#bc214b</color>
-    <color name="colorPrimaryDark">#9e1c40</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#4A90E2</color>
+    <color name="colorPrimaryDark">#7BB7F6</color>
+    <color name="colorAccent">#FFD54F</color>
     <color name="GoogleTextColor">#444444</color>
+    <color name="colorWhite">#FFFFFF</color>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="teal_200">#03DAC5</color> <!-- Color verde/teal predeterminado -->
+    <color name="teal_700">#018786</color> <!-- Color más oscuro del teal -->
+    <color name="purple_200">#BB86FC</color>
+    <color name="black">#000000</color>
+    <color name="red">#FF0000</color>
 </resources>

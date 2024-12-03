@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context=".MainActivity">
+    tools:context=".ui.view.MainActivity">
 
 
     <Button
@@ -19,8 +19,9 @@
         android:padding="8dp"
         android:text="Sign in with Google"
         android:textAllCaps="false"
-        android:textColor="@color/GoogleTextColor"
-        android:textStyle="bold" />
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        />
 
     <Button
         android:id="@+id/google_signout_btn"

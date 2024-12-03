@@ -1,5 +1,6 @@
-package com.quispe.ismael.logintest_proyecto_integrador
+package com.quispe.ismael.logintest_proyecto_integrador.data.network
 
+import com.quispe.ismael.logintest_proyecto_integrador.data.model.EstacionamientoAuto01
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST

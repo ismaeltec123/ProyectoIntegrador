@@ -1,0 +1,45 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.quispe.ismael.logintest_proyecto_integrador.ui.view.HomeFragment"
+        android:label="Inicio"
+        tools:layout="@layout/fragment_home">
+        <argument
+            android:name="google_profile_pic_url"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_parking"
+        android:name="com.quispe.ismael.logintest_proyecto_integrador.ui.view.ParkingFragment"
+        android:label="Estacionamiento"
+        tools:layout="@layout/fragment_parking" />
+
+
+    <!-- Placeholder Fragments -->
+    <fragment
+        android:id="@+id/nav_notes"
+
+        android:label="Notas"
+        tools:layout="@layout/fragment_placeholder" />
+
+    <fragment
+        android:id="@+id/nav_agenda"
+
+        android:label="Agenda"
+        tools:layout="@layout/fragment_placeholder" />
+
+    <fragment
+        android:id="@+id/nav_menu"
+
+        android:label="Menú"
+        tools:layout="@layout/fragment_placeholder" />
+</navigation>
+
+

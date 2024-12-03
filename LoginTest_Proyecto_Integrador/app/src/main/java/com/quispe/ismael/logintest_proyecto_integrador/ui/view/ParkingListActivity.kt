@@ -1,5 +1,5 @@
 
-package com.quispe.ismael.logintest_proyecto_integrador
+package com.quispe.ismael.logintest_proyecto_integrador.ui.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,9 +9,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.quispe.ismael.logintest_proyecto_integrador.R
+import com.quispe.ismael.logintest_proyecto_integrador.data.model.EstacionamientoAuto01
+import com.quispe.ismael.logintest_proyecto_integrador.data.network.RetrofitClient
+import com.quispe.ismael.logintest_proyecto_integrador.ui.adapter.ParkingAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.quispe.ismael.logintest_proyecto_integrador.data.database.SharedPreferencesRepository
+
+
+
+
 
 class ParkingListActivity : AppCompatActivity() {
 
@@ -20,14 +29,32 @@ class ParkingListActivity : AppCompatActivity() {
 
 
 
+    private lateinit var sharedPreferencesRepository: SharedPreferencesRepository
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parking_list)
 
+
+        // Inicializar SharedPreferencesRepository
+        sharedPreferencesRepository = SharedPreferencesRepository()
+        sharedPreferencesRepository.initSharedPreferences(this)
+
+        // Verificar si el tour ya fue completado
+        if (!sharedPreferencesRepository.isTourCompleted()) {
+            val intent = Intent(this, TourActivity::class.java)
+            startActivity(intent)
+            finish() // Cierra esta actividad mientras se muestra el tour
+            return
+        }
+
+
+
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Initialize the adapter with empty data and set it to the RecyclerView
+
         parkingAdapter = ParkingAdapter(emptyList()) { parkingSlot ->
             deleteParkingSlot(parkingSlot)
         }

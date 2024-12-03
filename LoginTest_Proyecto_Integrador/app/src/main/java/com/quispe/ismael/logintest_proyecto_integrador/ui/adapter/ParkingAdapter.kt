@@ -1,4 +1,4 @@
-package com.quispe.ismael.logintest_proyecto_integrador
+package com.quispe.ismael.logintest_proyecto_integrador.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.quispe.ismael.logintest_proyecto_integrador.R
+import com.quispe.ismael.logintest_proyecto_integrador.data.model.EstacionamientoAuto01
 
 class ParkingAdapter(
     private var parkingList: List<EstacionamientoAuto01>,

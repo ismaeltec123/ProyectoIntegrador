@@ -1,4 +1,4 @@
-package com.quispe.ismael.logintest_proyecto_integrador
+package com.quispe.ismael.logintest_proyecto_integrador.ui.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -111,6 +111,7 @@ class MainActivity : AppCompatActivity() {
             Log.e(
                 "failed code=", e.statusCode.toString()
             )
+            Toast.makeText(this, "ERROR: UTILIZA UN CORREO CON DOMINIO DE @tecsup.edu.pe", Toast.LENGTH_SHORT).show()
         }
     }
 
