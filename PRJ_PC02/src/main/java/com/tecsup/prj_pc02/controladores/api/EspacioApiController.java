@@ -1,11 +1,13 @@
 package com.tecsup.prj_pc02.controladores.api;
 
+import com.tecsup.prj_pc02.modelo.dto.AsignacionEspacioDTO;
 import com.tecsup.prj_pc02.modelo.entidades.Espacio;
 import com.tecsup.prj_pc02.modelo.entidades.Estacionamiento;
 import com.tecsup.prj_pc02.modelo.entidades.EstadoEspacio;
 import com.tecsup.prj_pc02.servicios.EspacioService;
 import com.tecsup.prj_pc02.servicios.EstacionamientoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -77,5 +79,17 @@ public class EspacioApiController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Integer id) {
         espacioService.eliminar(id);
+    }
+
+    @PostMapping("/asignar")
+    public ResponseEntity<Espacio> asignarEspacio(@RequestBody AsignacionEspacioDTO dto) {
+        Espacio espacioAsignado = espacioService.asignarEspacio(dto);
+        return ResponseEntity.ok(espacioAsignado);
+    }
+
+    @PutMapping("/liberar/{id}")
+    public ResponseEntity<Espacio> liberarEspacio(@PathVariable Integer id) {
+        Espacio espacioLiberado = espacioService.liberarEspacio(id);
+        return ResponseEntity.ok(espacioLiberado);
     }
 }

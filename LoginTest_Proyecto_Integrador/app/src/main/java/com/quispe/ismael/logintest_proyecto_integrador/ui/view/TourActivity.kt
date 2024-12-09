@@ -21,8 +21,8 @@ class TourActivity : AppCompatActivity() {
         setContentView(R.layout.activity_tour)
 
         // Inicializar SharedPreferencesRepository
-        sharedPreferencesRepository = SharedPreferencesRepository()
-        sharedPreferencesRepository.initSharedPreferences(this)
+        sharedPreferencesRepository = SharedPreferencesRepository(this)
+
 
         val tourPages = listOf(
             TourPage("Accede al Carnet Virtual", "Para acceder haz clic en tu foto de perfil...", R.drawable.tour1),

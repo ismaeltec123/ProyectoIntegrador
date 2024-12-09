@@ -16,6 +16,18 @@
         android:theme="@style/Theme.LoginTest_Proyecto_Integrador"
         tools:targetApi="31">
         <activity
+            android:name=".ui.view.EditVehiculoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.view.CreateVehiculoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.view.VehiculoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.view.EditResourceActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.view.HomeActivity"
             android:exported="false" />
         <activity

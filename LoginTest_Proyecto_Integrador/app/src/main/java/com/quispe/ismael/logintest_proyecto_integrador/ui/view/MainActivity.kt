@@ -13,7 +13,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.quispe.ismael.logintest_proyecto_integrador.R
-
+import com.quispe.ismael.logintest_proyecto_integrador.data.database.SharedPreferencesRepository
+import com.quispe.ismael.logintest_proyecto_integrador.data.model.OAuthRequest
+import com.quispe.ismael.logintest_proyecto_integrador.data.model.Usuario
+import com.quispe.ismael.logintest_proyecto_integrador.data.network.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,11 +29,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val gso =
-            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("186040582626-s62hbke94jnhnt84gm4e6lhs5tjshtdd.apps.googleusercontent.com")
-                .requestEmail()
-                .build()
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("186040582626-s62hbke94jnhnt84gm4e6lhs5tjshtdd.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
@@ -45,74 +50,106 @@ class MainActivity : AppCompatActivity() {
 
     private fun signIn() {
         val signInIntent = mGoogleSignInClient.signInIntent
-        startActivityForResult(
-            signInIntent, RC_SIGN_IN
-        )
+        startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
     private fun signOut() {
         mGoogleSignInClient.signOut()
             .addOnCompleteListener(this) {
-                // Update your UI here
-            }
-    }
-
-    private fun revokeAccess() {
-        mGoogleSignInClient.revokeAccess()
-            .addOnCompleteListener(this) {
-                // Update your UI here
+                Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_SHORT).show()
             }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
-            val task =
-                GoogleSignIn.getSignedInAccountFromIntent(data)
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
         }
     }
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
-            val account = completedTask.getResult(
-                ApiException::class.java
-            )
-            // Signed in successfully
-            val googleId = account?.id ?: ""
-            Log.i("Google ID", googleId)
-
-            val googleFirstName = account?.givenName ?: ""
-            Log.i("Google First Name", googleFirstName)
-
-            val googleLastName = account?.familyName ?: ""
-            Log.i("Google Last Name", googleLastName)
-
+            val account = completedTask.getResult(ApiException::class.java)
             val googleEmail = account?.email ?: ""
-            Log.i("Google Email", googleEmail)
-
+            val googleId = account?.id ?: ""
+            val googleFirstName = account?.givenName ?: ""
+            val googleLastName = account?.familyName ?: ""
             val googleProfilePicURL = account?.photoUrl.toString()
-            Log.i("Google Profile Pic URL", googleProfilePicURL)
 
-            val googleIdToken = account?.idToken ?: ""
-            Log.i("Google ID Token", googleIdToken)
+            // Registrar usuario en el backend
+            registerOAuthInBackend(googleEmail, "Google", googleId, googleFirstName, googleLastName, googleProfilePicURL)
 
-
-            val myIntent = Intent(this, DetailsActivity::class.java)
-            myIntent.putExtra("google_id", googleId)
-            myIntent.putExtra("google_first_name", googleFirstName)
-            myIntent.putExtra("google_last_name", googleLastName)
-            myIntent.putExtra("google_email", googleEmail)
-            myIntent.putExtra("google_profile_pic_url", googleProfilePicURL)
-            myIntent.putExtra("google_id_token", googleIdToken)
-            this.startActivity(myIntent)
         } catch (e: ApiException) {
-            // Sign in was unsuccessful
-            Log.e(
-                "failed code=", e.statusCode.toString()
-            )
-            Toast.makeText(this, "ERROR: UTILIZA UN CORREO CON DOMINIO DE @tecsup.edu.pe", Toast.LENGTH_SHORT).show()
+            Log.e("OAuth Error", "Código de error: ${e.statusCode}")
+            Toast.makeText(this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun registerOAuthInBackend(
+        email: String,
+        oauthProvider: String,
+        oauthId: String,
+        firstName: String,
+        lastName: String,
+        profilePicURL: String
+    ) {
+        val apiService = RetrofitClient.apiService
+        val fullName = "$firstName $lastName"
+        val oAuthRequest = OAuthRequest(email, oauthProvider, oauthId,fullName)
+
+        apiService.registerOAuth(oAuthRequest).enqueue(object : Callback<Usuario> {
+            override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
+                if (response.isSuccessful) {
+                    val usuario = response.body()
+                    if (usuario != null) {
+                        Log.i("Registro Exitoso", "Usuario registrado: $usuario")
+
+                        // Guardar el ID del usuario en SharedPreferences
+                        val sharedPreferencesRepository = SharedPreferencesRepository(this@MainActivity)
+                        sharedPreferencesRepository.guardarIdUsuarioEnPreferencias(usuario.id)
+                        Log.d("MainActivity", "ID de usuario guardado en SharedPreferences: ${usuario.id}")
+
+
+
+                        navigateToDetailsActivity(
+                            usuario,
+                            firstName,
+                            lastName,
+                            profilePicURL
+                        )
+                    } else {
+                        Log.e("Registro Error", "Respuesta vacía del servidor")
+
+                        Toast.makeText(this@MainActivity, "Error al registrar usuario", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Log.e("Registro Error", "Código HTTP: ${response.code()}")
+                    Toast.makeText(this@MainActivity, "Error al registrar usuario", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Usuario>, t: Throwable) {
+                Log.e("Registro Error", "Fallo en la conexión: ${t.message}")
+                Toast.makeText(this@MainActivity, "Error de conexión", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun navigateToDetailsActivity(
+        usuario: Usuario,
+        firstName: String,
+        lastName: String,
+        profilePicURL: String
+    ) {
+        val myIntent = Intent(this, DetailsActivity::class.java)
+        myIntent.putExtra("google_id", usuario.id.toString())
+        myIntent.putExtra("google_first_name", firstName)
+        myIntent.putExtra("google_last_name", lastName)
+        myIntent.putExtra("google_email", usuario.dni) // Adaptación
+        myIntent.putExtra("google_profile_pic_url", profilePicURL)
+        startActivity(myIntent)
+        finish()
     }
 
     companion object {

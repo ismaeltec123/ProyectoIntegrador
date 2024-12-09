@@ -38,8 +38,8 @@ class ParkingListActivity : AppCompatActivity() {
 
 
         // Inicializar SharedPreferencesRepository
-        sharedPreferencesRepository = SharedPreferencesRepository()
-        sharedPreferencesRepository.initSharedPreferences(this)
+        sharedPreferencesRepository = SharedPreferencesRepository(this)
+
 
         // Verificar si el tour ya fue completado
         if (!sharedPreferencesRepository.isTourCompleted()) {

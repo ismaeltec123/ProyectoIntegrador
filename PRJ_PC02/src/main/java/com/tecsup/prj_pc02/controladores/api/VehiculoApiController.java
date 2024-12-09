@@ -105,4 +105,13 @@ public class VehiculoApiController {
         }
         vehiculoService.eliminar(id);
     }
+
+    @GetMapping("/usuario/{usuarioId}")
+    public List<Vehiculo> listarPorUsuario(@PathVariable Integer usuarioId) {
+        Usuario usuario = usuarioService.buscar(usuarioId);
+        if (usuario == null) {
+            throw new IllegalArgumentException("Usuario no encontrado con el ID proporcionado.");
+        }
+        return vehiculoService.listarPorUsuario(usuario);
+    }
 }

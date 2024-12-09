@@ -1,6 +1,7 @@
 package com.tecsup.prj_pc02.servicios;
 
 import com.tecsup.prj_pc02.modelo.daos.VehiculoRepository;
+import com.tecsup.prj_pc02.modelo.entidades.Usuario;
 import com.tecsup.prj_pc02.modelo.entidades.Vehiculo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,8 @@ public class VehiculoServiceImpl implements VehiculoService {
     @Transactional(readOnly = true)
     public List<Vehiculo> listar() {
         return vehiculoRepository.findAll();
+    }
+    public List<Vehiculo> listarPorUsuario(Usuario usuario) {
+        return vehiculoRepository.findByUsuario(usuario);
     }
 }

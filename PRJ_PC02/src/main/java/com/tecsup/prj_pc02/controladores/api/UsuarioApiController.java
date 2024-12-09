@@ -1,5 +1,8 @@
 package com.tecsup.prj_pc02.controladores.api;
 
+import com.tecsup.prj_pc02.modelo.dto.PreferenciaDTO;
+import com.tecsup.prj_pc02.modelo.dto.QrUpdateDTO;
+import com.tecsup.prj_pc02.modelo.dto.UsuarioDTO;
 import com.tecsup.prj_pc02.modelo.entidades.Usuario;
 import com.tecsup.prj_pc02.servicios.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,25 +34,42 @@ public class UsuarioApiController {
 
     // Obtener un usuario por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> obtenerUsuario(@PathVariable Integer id) {
+    public ResponseEntity<Usuario> getUsuarioById(@PathVariable Integer id) {
         Usuario usuario = usuarioService.buscar(id);
-        if (usuario == null) {
-            return ResponseEntity.notFound().build();
+        if (usuario != null) {
+            return ResponseEntity.ok(usuario); // Devuelve la entidad directamente
         }
-        return ResponseEntity.ok(usuario);
+        return ResponseEntity.notFound().build();
     }
+
 
     // Actualizar un usuario existente
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> actualizarUsuario(@PathVariable Integer id, @RequestBody Usuario usuario) {
-        Usuario usuarioExistente = usuarioService.buscar(id);
-        if (usuarioExistente == null) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<UsuarioDTO> actualizarUsuario(
+            @PathVariable Integer id,
+            @RequestBody UsuarioDTO usuarioDTO) {
+        try {
+            Usuario usuarioActualizado = usuarioService.actualizarUsuario(
+                    id,
+                    usuarioDTO.getDni(),
+                    usuarioDTO.getCodigoEstudiante(),
+                    usuarioDTO.getNombre() // Puede ser null
+            );
+
+            UsuarioDTO respuesta = new UsuarioDTO(
+                    usuarioActualizado.getDni(),
+                    usuarioActualizado.getCodigoEstudiante(),
+                    usuarioActualizado.getNombre()
+            );
+
+            return ResponseEntity.ok(respuesta);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
         }
-        usuario.setId(id);
-        Usuario usuarioActualizado = usuarioService.grabar(usuario);
-        return ResponseEntity.ok(usuarioActualizado);
     }
+
+
+
 
     // Eliminar un usuario
     @DeleteMapping("/{id}")
@@ -60,5 +80,27 @@ public class UsuarioApiController {
         }
         usuarioService.eliminar(id);
         return ResponseEntity.noContent().build();
+    }
+    @PutMapping("/{userId}/preferencia")
+    public ResponseEntity<?> actualizarPreferencia(
+            @PathVariable Integer userId,
+            @RequestBody PreferenciaDTO preferenciaDTO) {
+        try {
+            usuarioService.actualizarPreferencia(userId, preferenciaDTO.getPreferenciaEstacionamiento());
+            return ResponseEntity.ok("Preferencia actualizada correctamente");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al actualizar la preferencia: " + e.getMessage());
+        }
+    }
+    @PutMapping("/{id}/qr")
+    public ResponseEntity<Usuario> actualizarQR(
+            @PathVariable Integer id,
+            @RequestBody QrUpdateDTO qrUpdateDTO) {
+        try {
+            Usuario usuarioActualizado = usuarioService.actualizarQR(id, qrUpdateDTO.getQr());
+            return ResponseEntity.ok(usuarioActualizado);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 }

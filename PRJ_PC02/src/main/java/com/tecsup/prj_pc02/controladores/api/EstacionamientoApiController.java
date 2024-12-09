@@ -1,5 +1,6 @@
 package com.tecsup.prj_pc02.controladores.api;
 
+import com.tecsup.prj_pc02.modelo.dto.EstacionamientoDTO;
 import com.tecsup.prj_pc02.modelo.entidades.Estacionamiento;
 import com.tecsup.prj_pc02.servicios.EstacionamientoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,20 @@ public class EstacionamientoApiController {
     @Autowired
     private EstacionamientoService estacionamientoService;
 
+
+
     // Listar todos los estacionamientos
     @GetMapping
     public List<Estacionamiento> listar() {
         return estacionamientoService.listar();
     }
+
+    // Listar estacionamientos con capacidad disponible
+    @GetMapping("/capacidad-disponible")
+    public List<EstacionamientoDTO> listarConCapacidadDisponible() {
+        return estacionamientoService.listarConCapacidadDisponible();
+    }
+
 
     // Crear un nuevo estacionamiento
     @PostMapping
@@ -52,4 +62,5 @@ public class EstacionamientoApiController {
     public void eliminar(@PathVariable Integer id) {
         estacionamientoService.eliminar(id);
     }
+
 }

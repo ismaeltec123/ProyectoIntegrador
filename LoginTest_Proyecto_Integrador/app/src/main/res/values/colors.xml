@@ -13,4 +13,6 @@
     <color name="purple_200">#BB86FC</color>
     <color name="black">#000000</color>
     <color name="red">#FF0000</color>
+    <color name="green">#5EFF00</color>
+    <color name="gray">#C1C1C1</color>
 </resources>
