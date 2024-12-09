@@ -1,11 +1,8 @@
--- Eliminar base de datos existente (si es necesario)
-DROP DATABASE IF EXISTS tecsup_parking;
-
--- Crear la base de datos
+-- Creación de la base de datos
 CREATE DATABASE tecsup_parking;
 USE tecsup_parking;
 
--- Crear la tabla usuarios
+-- Tabla usuarios
 CREATE TABLE usuarios (
     pk_id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     dni VARCHAR(15) UNIQUE NOT NULL,
@@ -16,7 +13,7 @@ CREATE TABLE usuarios (
     qr VARCHAR(255) UNIQUE NOT NULL
 );
 
--- Crear la tabla vehiculos
+-- Tabla vehiculos
 CREATE TABLE vehiculos (
     pk_id_vehiculo INT AUTO_INCREMENT PRIMARY KEY,
     fk_id_usuario INT NOT NULL,
@@ -28,7 +25,7 @@ CREATE TABLE vehiculos (
     FOREIGN KEY (fk_id_usuario) REFERENCES usuarios(pk_id_usuario)
 );
 
--- Crear la tabla estacionamientos
+-- Tabla estacionamientos
 CREATE TABLE estacionamientos (
     pk_id_estacionamiento INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
@@ -36,7 +33,7 @@ CREATE TABLE estacionamientos (
     capacidad INT NOT NULL
 );
 
--- Crear la tabla espacios
+-- Tabla espacios
 CREATE TABLE espacios (
     pk_id_espacio INT AUTO_INCREMENT PRIMARY KEY,
     fk_id_estacionamiento INT NOT NULL,
@@ -45,7 +42,7 @@ CREATE TABLE espacios (
     FOREIGN KEY (fk_id_estacionamiento) REFERENCES estacionamientos(pk_id_estacionamiento)
 );
 
--- Crear la tabla movimientos
+-- Tabla movimientos
 CREATE TABLE movimientos (
     pk_id_movimiento INT AUTO_INCREMENT PRIMARY KEY,
     fk_id_usuario INT NOT NULL,
@@ -60,26 +57,13 @@ CREATE TABLE movimientos (
     FOREIGN KEY (fk_id_espacio) REFERENCES espacios(pk_id_espacio)
 );
 
--- Crear la tabla administradores
+-- Tabla administradores
 CREATE TABLE administradores (
     pk_id_admin INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     usuario VARCHAR(50) UNIQUE NOT NULL,
     contrasena VARCHAR(255) NOT NULL
 );
-
-
-CREATE TABLE credenciales_oauth (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(255) NOT NULL,
-    oauth_provider VARCHAR(100) NOT NULL,
-    oauth_id VARCHAR(255) NOT NULL,
-    fk_id_usuario INT NOT NULL,
-    FOREIGN KEY (fk_id_usuario) REFERENCES usuarios(pk_id_usuario)
-);
-
-
-
 -- Datos iniciales
 -- Usuarios
 INSERT INTO usuarios (dni, codigo_estudiante, nombre, tipo_usuario, preferencia_estacionamiento, qr) VALUES
