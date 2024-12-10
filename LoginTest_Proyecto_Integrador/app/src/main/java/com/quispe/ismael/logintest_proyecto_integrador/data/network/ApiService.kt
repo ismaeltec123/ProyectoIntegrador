@@ -1,8 +1,13 @@
 package com.quispe.ismael.logintest_proyecto_integrador.data.network
 
+import com.quispe.ismael.logintest_proyecto_integrador.data.model.AsignacionEspacioDTO
+import com.quispe.ismael.logintest_proyecto_integrador.data.model.AsignacionMovimientoDTO
+import com.quispe.ismael.logintest_proyecto_integrador.data.model.EspacioDTO
 import com.quispe.ismael.logintest_proyecto_integrador.data.model.EstacionamientoAuto01
 import com.quispe.ismael.logintest_proyecto_integrador.data.model.Estacionamiento
 import com.quispe.ismael.logintest_proyecto_integrador.data.model.EstacionamientoDTO
+import com.quispe.ismael.logintest_proyecto_integrador.data.model.LiberacionMovimientoDTO
+import com.quispe.ismael.logintest_proyecto_integrador.data.model.MovimientoDTO
 import com.quispe.ismael.logintest_proyecto_integrador.data.model.OAuthRequest
 import com.quispe.ismael.logintest_proyecto_integrador.data.model.PreferenciaDTO
 import com.quispe.ismael.logintest_proyecto_integrador.data.model.Usuario
@@ -73,5 +78,19 @@ interface ApiService {
     // Eliminar un vehículo por ID
     @DELETE("/api/vehiculos/{id}")
     fun eliminarVehiculo(@Path("id") id: Int): Call<Void>
+
+    // Asignar un espacio
+    @POST("/api/espacios/asignar")
+    fun asignarEspacio(@Body asignacionEspacioDTO: AsignacionEspacioDTO): Call<EspacioDTO>
+
+    // Liberar un espacio
+    @PUT("/api/espacios/liberar/{id}")
+    fun liberarEspacio(@Path("id") espacioId: Int): Call<EspacioDTO>
+
+    @POST("/api/movimientos/asignar")
+    fun registrarMovimiento(@Body movimiento: AsignacionMovimientoDTO): Call<MovimientoDTO>
+
+    @PUT("/api/movimientos/liberar")
+    fun liberarMovimiento(@Body movimiento: LiberacionMovimientoDTO): Call<Void>
 }
 

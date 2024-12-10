@@ -55,6 +55,49 @@ class SharedPreferencesRepository(context: Context) {
             .apply()
     }
 
+    fun guardarEspacioOcupado(espacioId: Int) {
+        sharedPreferences.edit()
+            .putInt("ESPACIO_OCUPADO", espacioId)
+            .apply()
+    }
+
+    fun obtenerEspacioOcupado(): Int? {
+        val espacioId = sharedPreferences.getInt("ESPACIO_OCUPADO", -1)
+        return if (espacioId == -1) null else espacioId
+    }
+
+    fun liberarEspacio() {
+        sharedPreferences.edit()
+            .remove("ESPACIO_OCUPADO")
+            .apply()
+    }
+
+    fun getPreferenciaEstacionamiento(): Int {
+        return sharedPreferences.getInt("PREFERENCIA_ESTACIONAMIENTO", -1)
+    }
+
+    fun guardarPreferenciaEstacionamiento(preferencia: Int) {
+        sharedPreferences.edit()
+            .putInt("PREFERENCIA_ESTACIONAMIENTO", preferencia)
+            .apply()
+    }
+    fun guardarMovimientoId(movimientoId: Int) {
+        sharedPreferences.edit()
+            .putInt("MOVIMIENTO_ID", movimientoId)
+            .apply()
+    }
+
+    fun getMovimientoId(): Int {
+        return sharedPreferences.getInt("MOVIMIENTO_ID", -1)
+    }
+
+    fun liberarMovimientoId() {
+        sharedPreferences.edit()
+            .remove("MOVIMIENTO_ID")
+            .apply()
+    }
+
+
     // Limpiar todos los datos (por ejemplo, para logout)
     fun clearAll() {
         sharedPreferences
@@ -62,4 +105,5 @@ class SharedPreferencesRepository(context: Context) {
             .clear()
             .apply()
     }
+
 }

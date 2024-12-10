@@ -1,12 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_centerInParent="true"
-    android:background="@color/colorPrimary"
-    android:gravity="center"
+    android:background="@drawable/your_background_image"
     tools:context=".ui.view.DetailsActivity">
+
+    <!-- Capa de filtro oscuro -->
+    <View
+        android:id="@+id/dark_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,7 +29,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-
+            <!-- Imagen del perfil -->
             <ImageView
                 android:id="@+id/profile_image"
                 android:layout_width="100dp"
@@ -33,9 +37,21 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="16dp"
                 android:scaleType="centerCrop"
-
                 android:src="@drawable/ic_placeholder_profile" />
 
+            <!-- Título: Detalles credenciales OAuth -->
+            <TextView
+                android:id="@+id/details_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="Detalles credenciales OAuth"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- Detalle del ID -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,7 +65,6 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@android:color/white" />
@@ -72,6 +87,7 @@
                 android:layout_marginBottom="5dp"
                 android:background="@android:color/white" />
 
+            <!-- Nombre del Usuario -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -85,7 +101,6 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@android:color/white" />
@@ -101,7 +116,6 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
@@ -109,6 +123,7 @@
                 android:layout_marginBottom="5dp"
                 android:background="@android:color/white" />
 
+            <!-- Apellido del Usuario -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -144,6 +159,7 @@
                 android:layout_marginBottom="5dp"
                 android:background="@android:color/white" />
 
+            <!-- Email del Usuario -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -179,24 +195,15 @@
                 android:layout_marginBottom="5dp"
                 android:background="@android:color/white" />
 
-
-
-
-            <Button
-                android:id="@+id/crud_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ingresar CRUD"
-                android:layout_gravity="center" />
-
+            <!-- Botón GotoMain -->
             <Button
                 android:id="@+id/GotoMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="GotoMain"
+                android:text="Ir a la aplicación"
                 android:layout_gravity="center" />
 
-
+            <!-- Botón Cerrar Sesión -->
             <Button
                 android:id="@+id/google_signout_btn"
                 android:layout_width="wrap_content"

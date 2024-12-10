@@ -2,65 +2,131 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:color/white">
 
+    <!-- Título: Datos del Usuario -->
+    <TextView
+        android:id="@+id/title_section_listed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Datos del Usuario"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Campo: Nombre -->
+    <TextView
+        android:id="@+id/text_nombre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nombre: Juan Pérez"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/title_section_listed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Campo: Tipo Usuario -->
+    <TextView
+        android:id="@+id/text_tipo_usuario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tipo Usuario: Estudiante"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/text_nombre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Campo: Preferencia Estacionamiento -->
+    <TextView
+        android:id="@+id/text_preferencia_estacionamiento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Preferencia Estacionamiento: General"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/text_tipo_usuario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Separador -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/text_preferencia_estacionamiento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Título: Editar Información -->
+    <TextView
+        android:id="@+id/title_section_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Editar Información"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/text_preferencia_estacionamiento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp" />
+
+    <!-- Campo para Editar DNI -->
     <EditText
         android:id="@+id/edit_dni"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="DNI"
         android:inputType="text"
-        app:layout_constraintTop_toTopOf="parent"
+        android:padding="8dp"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        app:layout_constraintTop_toBottomOf="@id/title_section_edit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp" />
+        android:layout_marginTop="8dp" />
 
+    <!-- Campo para Editar Código Estudiante -->
     <EditText
         android:id="@+id/edit_codigo_estudiante"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Código Estudiante"
         android:inputType="text"
+        android:padding="8dp"
+        android:background="@android:color/white"
+        android:elevation="2dp"
         app:layout_constraintTop_toBottomOf="@id/edit_dni"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp" />
+        android:layout_marginTop="8dp" />
 
-    <TextView
-        android:id="@+id/text_nombre"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        app:layout_constraintTop_toBottomOf="@id/edit_codigo_estudiante"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/text_tipo_usuario"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        app:layout_constraintTop_toBottomOf="@id/text_nombre"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/text_preferencia_estacionamiento"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        app:layout_constraintTop_toBottomOf="@id/text_tipo_usuario"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+    <!-- Botón para Guardar Cambios -->
     <Button
         android:id="@+id/save_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Guardar Cambios"
-        app:layout_constraintTop_toBottomOf="@id/text_preferencia_estacionamiento"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/black"
+        android:padding="10dp"
+        android:elevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/edit_codigo_estudiante"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp" />
+        android:layout_marginTop="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,35 +3,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-    <!-- Logo o imagen superior -->
-    <ImageView
-        android:id="@+id/parkingLogo"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+    <!-- Botón para editar recursos -->
     <ImageButton
         android:id="@+id/button_edit_resource"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_edit"
+        android:contentDescription="Editar recursos"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp" />
+
     <!-- Botón para ver vehículos -->
     <ImageButton
         android:id="@+id/buttonVehiculo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_vehicle"
+        android:contentDescription="Ver vehículos"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/button_edit_resource"
         android:layout_margin="16dp" />
+
     <!-- Título -->
     <TextView
         android:id="@+id/parkingTitle"
@@ -40,23 +36,50 @@
         android:text="Parking Garage Status"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/parkingLogo"
+        app:layout_constraintTop_toBottomOf="@id/buttonVehiculo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp" />
+
+    <!-- Indicador de estado -->
+    <TextView
+        android:id="@+id/statusIndicator"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Estado: Pendiente"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
+
+    <!-- QR Code -->
+    <ImageView
+        android:id="@+id/qrImageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:contentDescription="Código QR"
+        android:background="@android:color/white"
+        android:scaleType="centerInside"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/parkingTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/parkingRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/parkingTitle"
+        app:layout_constraintTop_toBottomOf="@id/qrImageView"
         app:layout_constraintBottom_toTopOf="@id/refreshButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp" />
-
 
     <!-- Botón de refrescar -->
     <Button
@@ -64,7 +87,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Refresh"
-
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/parkingRecyclerView"
         app:layout_constraintBottom_toBottomOf="parent"

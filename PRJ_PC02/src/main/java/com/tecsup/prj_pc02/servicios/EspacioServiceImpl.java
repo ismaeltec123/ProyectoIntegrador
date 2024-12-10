@@ -4,15 +4,19 @@ import com.tecsup.prj_pc02.modelo.daos.EspacioRepository;
 import com.tecsup.prj_pc02.modelo.dto.AsignacionEspacioDTO;
 import com.tecsup.prj_pc02.modelo.entidades.Espacio;
 import com.tecsup.prj_pc02.modelo.entidades.Estacionamiento;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.tecsup.prj_pc02.modelo.entidades.EstadoEspacio;
 import java.util.List;
 import java.util.Optional;
+import org.slf4j.Logger;
+import static com.mysql.cj.conf.PropertyKey.logger;
 
 @Service
 public class EspacioServiceImpl implements EspacioService {
+    private static final Logger logger = LoggerFactory.getLogger(EspacioServiceImpl.class);
 
     @Autowired
     private EspacioRepository espacioRepository;
@@ -49,6 +53,8 @@ public class EspacioServiceImpl implements EspacioService {
     @Override
     @Transactional
     public Espacio asignarEspacio(AsignacionEspacioDTO dto) {
+        logger.info("AsignarEspacio: Datos recibidos -> EstacionamientoID: {}, UsuarioID: {}, VehiculoID: {}",
+                dto.getEstacionamientoId(), dto.getUsuarioId(), dto.getVehiculoId());
         Estacionamiento estacionamiento = estacionamientoService.buscar(dto.getEstacionamientoId());
 
         if (estacionamiento == null) {

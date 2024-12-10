@@ -70,11 +70,7 @@ class DetailsActivity : AppCompatActivity() {
             signOut()
         }
 
-        val CrudButton = findViewById<Button>(R.id.crud_btn)
-        CrudButton.setOnClickListener {
-            val intent = Intent(this, ParkingListActivity::class.java)
-            startActivity(intent)  // Start the activity
-        }
+
 
         val GotoMainButton = findViewById<Button>(R.id.GotoMain)
         GotoMainButton.setOnClickListener {
