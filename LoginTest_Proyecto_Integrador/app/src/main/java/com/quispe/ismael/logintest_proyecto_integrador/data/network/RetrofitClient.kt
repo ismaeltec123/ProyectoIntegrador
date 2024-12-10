@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "http://192.168.18.168:8086"  // Your Spring Boot server IP and port
+    private const val BASE_URL = "https://98f7-181-176-117-220.ngrok-free.app"  // Your Spring Boot server IP and port
 
     val apiService: ApiService by lazy {
         Retrofit.Builder()

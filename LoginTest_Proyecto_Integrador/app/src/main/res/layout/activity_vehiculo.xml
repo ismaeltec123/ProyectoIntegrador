@@ -26,6 +26,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="16dp" />
+    <!-- Botón para refrescar la lista -->
+    <Button
+        android:id="@+id/btnRefresh"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Refrescar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnAddVehiculo"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

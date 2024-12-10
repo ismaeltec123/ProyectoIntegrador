@@ -44,6 +44,12 @@ class VehiculoActivity : AppCompatActivity() {
             val intent = Intent(this, CreateVehiculoActivity::class.java)
             startActivity(intent)
         }
+        // Configura el botón de refrescar
+        val btnRefresh = findViewById<Button>(R.id.btnRefresh)
+        btnRefresh.setOnClickListener {
+            fetchVehiculos()
+            Toast.makeText(this, "Lista actualizada", Toast.LENGTH_SHORT).show()
+        }
 
         fetchVehiculos()
     }
